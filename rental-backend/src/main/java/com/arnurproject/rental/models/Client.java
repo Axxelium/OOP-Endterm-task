@@ -2,6 +2,10 @@ package com.arnurproject.rental.models;
     
 public class Client {
     private int id;
+    private String username;
+    private String password;
+    private String role;
+
     private String name;
     private String surname;
     private String number;
@@ -9,15 +13,20 @@ public class Client {
     private int balance;
 
     // Конструкторы
-    public Client(int id, String name, String surname, String number, int balance) {
+    public Client(int id, String username, String password, String role, String name, String surname, String number, int balance) {
         this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
         this.name = name;
         this.surname = surname;
         this.number = number;
         this.balance = balance;
         this.rentingStatus = false;
     }
-    public Client(String name, String surname, String number, int balance) {
+    public Client(String username, String password, String name, String surname, String number, int balance) {
+        this.username = username;
+        this.password = password;
         this.name = name;
         this.surname = surname;
         this.number = number;
@@ -29,6 +38,9 @@ public class Client {
 
     // Сеттеры
     public void setId(int id) { this.id = id; }
+    public void setUsername(String username) { this.username = username; }
+    public void setPassword(String password) { this.password = password; }
+    public void setRole(String role) { this.role = role; }
     public void setName(String name) {
         this.name = name;
     }
@@ -47,6 +59,9 @@ public class Client {
 
     // Геттеры
     public int getId() { return id; }
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
+    public String getRole() { return role; }
     public String getName() { return name; }
     public String getSurname() { return surname; }
     public String getNumber() { return number; }
