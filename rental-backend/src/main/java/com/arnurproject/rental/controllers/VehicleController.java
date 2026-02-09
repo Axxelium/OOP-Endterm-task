@@ -18,7 +18,6 @@ public class VehicleController {
     // Ссылка: http://localhost:8080/api/vehicles
     @GetMapping("/vehicles")
     public ArrayList<Vehicle> getVehicles() {
-        // Просто вызываем твой старый добрый метод
         return dbManager.getAllVehicles();
     }
 }

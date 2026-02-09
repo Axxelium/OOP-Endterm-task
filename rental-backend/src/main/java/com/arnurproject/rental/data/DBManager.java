@@ -42,13 +42,16 @@ public class DBManager {
 
             while (rs.next()) {
                 int id = rs.getInt("id");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String role = rs.getString("role");
                 String name = rs.getString("name");
                 String surname = rs.getString("surname");
                 String phone = rs.getString("phone_number");
                 int balance = rs.getInt("balance");
 
                 // создаем объект
-                Client c = new Client(id, name, surname, phone, balance);
+                Client c = new Client(id,username, password, role, name, surname, phone, balance);
                 clients.add(c);
             }
         } catch (SQLException e) {
