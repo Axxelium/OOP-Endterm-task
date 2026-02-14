@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Fleet - ArnurRental</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3c83f6",
+                        "background-dark": "#050505",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                        "glass-bg": "rgba(255, 255, 255, 0.03)",
+                    },
+                    fontFamily: { "display": ["Inter", "sans-serif"] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background-dark text-white font-display antialiased selection:bg-primary selection:text-white">
+
+<div class="fixed inset-0 z-0 pointer-events-none">
+    <div class="noise-overlay"></div>
+</div>
+
+<nav class="fixed top-0 w-full z-40 glass-nav border-b border-white/5 bg-black/50 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <a class="flex items-center gap-1 group" href="index.html">
+            <span class="text-2xl font-black tracking-widest text-white">ARNUR</span>
+            <span class="text-2xl font-light tracking-widest text-primary drop-shadow-[0_0_8px_rgba(60,131,246,0.6)]">RENTAL</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="text-sm font-medium text-white border-b-2 border-primary pb-1" href="store.html">Fleet</a>
+            <a class="text-sm font-medium text-gray-300 hover:text-white transition-all" href="profile.html">Profile</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="auth-btn hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-glass-border hover:bg-white/5 transition-colors text-white" onclick="openLoginModal()">
+                <span class="material-icons text-sm">person</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<main class="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen">
+    <header class="mb-12 flex flex-col md:flex-row justify-between items-end gap-6">
+        <div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 mb-2">Our Premium Fleet</h1>
+            <p class="text-gray-400 max-w-lg">Experience the pinnacle of automotive engineering.</p>
+        </div>
+        <div class="flex gap-2 p-1 bg-white/5 rounded-lg border border-white/10">
+            <button class="px-4 py-2 text-xs font-bold text-white bg-white/10 rounded shadow-sm">ALL</button>
+            <button class="px-4 py-2 text-xs font-bold text-gray-400 hover:text-white transition-colors">SEDANS</button>
+            <button class="px-4 py-2 text-xs font-bold text-gray-400 hover:text-white transition-colors">TRUCKS</button>
+        </div>
+    </header>
+
+    <div id="vehicle-grid" class="grid grid-cols-1 gap-8">
+        <div class="col-span-1 text-center py-20 text-gray-500 animate-pulse">Loading vehicles...</div>
+    </div>
+</main>
+
+<div id="login-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity" onclick="closeLoginModal()"></div>
+    <div class="relative w-full max-w-[400px] p-8 rounded-2xl border border-white/10 bg-[#161618]/90 shadow-2xl">
+        <button onclick="closeLoginModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white"><span class="material-icons">close</span></button>
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-white">Sign In</h2>
+        </div>
+        <form class="space-y-5" onsubmit="handleLogin(event)">
+            <input id="username" type="text" placeholder="Username" class="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded-lg outline-none focus:border-primary">
+            <input id="password" type="password" placeholder="Password" class="w-full bg-white/5 border border-white/10 text-white px-4 py-3 rounded-lg outline-none focus:border-primary">
+            <button class="w-full py-3.5 bg-primary text-white font-bold rounded-lg mt-2 hover:bg-blue-600">Sign In</button>
+        </form>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

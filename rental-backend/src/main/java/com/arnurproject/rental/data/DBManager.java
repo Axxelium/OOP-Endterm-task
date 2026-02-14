@@ -9,6 +9,36 @@ import java.util.ArrayList;
 
 public class DBManager {
 
+    // Метод для поиска клиента по логину и паролю
+    public Client getClientByCredentials(String username, String password) {
+        String sql = "SELECT * FROM clients WHERE username = ? AND password = ?";
+        try (Connection conn = PostgresDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                // создаем объект, если нашли
+                Client c = new Client(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("role"),
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getString("phone_number"),
+                        rs.getInt("balance")
+                );
+                return c;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // не нашли
+    }
+
     // CREATE
     public void addClient(Client client) {
         String sql = "INSERT INTO clients (name, surname, phone_number, balance, renting_status) VALUES (?, ?, ?, ?, ?)" ;
