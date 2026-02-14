@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Если юзер есть, обновляем интерфейс (аватарку и имя)
+    // Если юзер есть, обновляем интерфейс
     if (user) {
         updateUIForLoggedUser(user);
     }
@@ -54,11 +54,13 @@ async function handleLogin(event) {
 
             window.location.href = "profile.html"; // Переходим в профиль
         } else {
-            alert("Wrong username or password!");
+            const errorText = await response.text();
+            console.error("Login failed:", response.status, errorText);
+            alert(`Login failed: ${response.status} ${errorText ? '- ' + errorText : ''}`);
         }
     } catch (error) {
-        console.error(error);
-        alert("Server error. Is Java running?");
+        console.error("Network or parsing error:", error);
+        alert(`Connection error: ${error.message}. Is the backend running?`);
     } finally {
         btn.innerText = "Sign In";
     }

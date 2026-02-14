@@ -34,6 +34,7 @@ public class DBManager {
                 return c;
             }
         } catch (SQLException e) {
+            System.err.println("Error fetching client by credentials: " + e.getMessage());
             e.printStackTrace();
         }
         return null; // не нашли

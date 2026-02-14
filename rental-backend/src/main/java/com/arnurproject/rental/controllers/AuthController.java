@@ -22,8 +22,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
+        System.out.println("Login attempt received.");
         String username = credentials.get("username");
         String password = credentials.get("password");
+
+        System.out.println("Processing login for user: " + username);
 
         if (username == null || password == null) {
             return ResponseEntity.badRequest().body("Username and password are required");
@@ -32,8 +35,10 @@ public class AuthController {
         Client client = dbManager.getClientByCredentials(username, password);
 
         if (client != null) {
+            System.out.println("User " + username + " logged in successfully.");
             return ResponseEntity.ok(client);
         } else {
+            System.out.println("Login failed for user: " + username);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
     }
