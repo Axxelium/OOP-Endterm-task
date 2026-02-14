@@ -1,17 +1,18 @@
 package com.arnurproject.rental.controllers;
 
-import com.arnurproject.rental.data.DBManager;
-import com.arnurproject.rental.models.Vehicle;
+import java.util.ArrayList;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
-import java.util.ArrayList;
+import com.arnurproject.rental.data.DBManager;
+import com.arnurproject.rental.models.Vehicle;
 
 @RestController
 @RequestMapping("/api") // ссылка
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class VehicleController {
     private DBManager dbManager = new DBManager();
 

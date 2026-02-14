@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/api/vehicles";
+const API_URL = "http://localhost:8080/api";
 
 // ЛОГИКА АВТОРИЗАЦИИ
 
@@ -41,7 +41,7 @@ async function handleLogin(event) {
     try {
         btn.innerHTML = '<div class="loader"></div>'; // Крутилка
 
-        const response = await fetch(`${API_URL}/login`, {
+        const response = await fetch(`${API_URL}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username: usernameInput, password: passwordInput })
@@ -148,7 +148,7 @@ async function loadVehicles() {
     container.innerHTML = '<div class="text-white text-center col-span-full">Loading fleet data...</div>';
 
     try {
-        const response = await fetch(API_URL);
+        const response = await fetch(`${API_URL}/vehicles`);
         const vehicles = await response.json();
 
         container.innerHTML = ''; // Очищаем
